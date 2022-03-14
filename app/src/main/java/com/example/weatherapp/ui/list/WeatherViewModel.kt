@@ -5,8 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.model.WeatherCityModel
 import com.example.weatherapp.data.model.WeatherModel
 import com.example.weatherapp.data.repository.WeatherRepository
+import com.example.weatherapp.di.IoDispatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
+    @IoDispatcher val ioDispatcher: CoroutineDispatcher,
     private val repository: WeatherRepository
 ) : ViewModel() {
 
@@ -43,7 +45,7 @@ class WeatherViewModel @Inject constructor(
      * does network request to fetch
      */
     fun fetchWeatherForecast() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             _loading.emit(true)
             try {
                 repository.fetchWeatherForecast(city = "Berlin").apply {
