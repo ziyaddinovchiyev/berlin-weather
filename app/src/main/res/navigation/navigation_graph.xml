@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/weatherListFragment">
+
+    <fragment
+        android:id="@+id/weatherListFragment"
+        android:name="com.example.weatherapp.ui.list.WeatherListFragment"
+        tools:layout="@layout/fragment_weather_list">
+        <action
+            android:id="@+id/action_weatherListFragment_to_weatherDetailFragment"
+            app:destination="@id/weatherDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/weatherDetailFragment"
+        android:name="com.example.weatherapp.ui.detail.WeatherDetailFragment"
+        tools:layout="@layout/fragment_weather_detail">
+
+        <argument
+            android:name="city"
+            app:argType="com.example.weatherapp.data.model.WeatherCityModel" />
+
+
+        <argument
+            android:name="hourlyWeather"
+            app:argType="com.example.weatherapp.data.model.WeatherModel" />
+    </fragment>
+</navigation>

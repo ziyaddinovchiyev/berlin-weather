@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.WeatherDetailFragment"
+    tools:ignore="ContentDescription">
+
+    <data>
+
+        <variable
+            name="city"
+            type="com.example.weatherapp.data.model.WeatherCityModel" />
+
+        <variable
+            name="weather"
+            type="com.example.weatherapp.data.model.WeatherModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primaryColor">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bottom_rounded_corners"
+            android:backgroundTint="@color/primaryDarkColor"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/navigateUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_close_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/primaryTextColor" />
+
+            <TextView
+                android:id="@+id/dayLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@{weather.dateTime}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintBottom_toBottomOf="@id/navigateUp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/navigateUp"
+                app:layout_constraintTop_toTopOf="@id/navigateUp"
+                tools:text="Monday 14.03, 15:00" />
+
+            <TextView
+                android:id="@+id/cityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@{city.name}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/text_size_xxx_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navigateUp"
+                tools:text="Berlin" />
+
+            <TextView
+                android:id="@+id/actualTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@{@string/temperature(weather.mainWeatherInfo.tempUI)}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/text_size_xxx_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityLabel"
+                tools:text="5 C" />
+
+            <TextView
+                android:id="@+id/temperatureLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat"
+                android:textAllCaps="true"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/text_size_xxx_large"
+                app:layout_constraintBottom_toBottomOf="@+id/actualTemperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/actualTemperature"
+                tools:text="hot" />
+
+            <TextView
+                android:id="@+id/feelsLikeTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@{@string/temperature_feels_like(weather.mainWeatherInfo.feelsLikeTempUI)}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/text_size_x_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actualTemperature"
+                tools:text="Feels like 15 C" />
+
+            <TextView
+                android:id="@+id/minMaxTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@{@string/temperature_min_max(weather.mainWeatherInfo.minTempUI, weather.mainWeatherInfo.maxTempUI)}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/text_size_x_large"
+                app:layout_constraintBottom_toBottomOf="@+id/feelsLikeTemperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/feelsLikeTemperature"
+                tools:text="3/6 C" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@{@string/humidity(weather.mainWeatherInfo.humidityUI)}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            tools:text="Humidity: 12" />
+
+        <TextView
+            android:id="@+id/weatherDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@{weather.weatherDescription[0].main}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/humidity"
+            tools:text="Clear" />
+
+        <TextView
+            android:id="@+id/sunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@{@string/sunrise(city.sunriseUI)}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weatherDescription"
+            tools:text="Sunrise at 15:00" />
+
+        <TextView
+            android:id="@+id/sunset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@{@string/sunset(city.sunsetUI)}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sunrise"
+            tools:text="Sunset at 15:00" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

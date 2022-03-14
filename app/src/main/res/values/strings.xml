@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="temperature">%1$s \u00B0C</string>
+    <string name="temperature_feels_like">Feels like %1$s \u00B0C</string>
+    <string name="temperature_min_max">%1$s/%2$s \u00B0C</string>
+    <string name="humidity">Humidity: %1$s</string>
+    <string name="sunrise">Sunrise at %1$s</string>
+    <string name="sunset">Sunset at %1$s</string>
+    <string name="hot_label">Hot</string>
+    <string name="cold_label">Cold</string>
+    <string name="warm_label">Warm</string>
+    <string name="network_error">Something went wrong</string>
+    <string name="internet_unavailable">Internet is not available. Please make sure you have an active internet connection</string>
+    <string name="retry_button_label">Retry</string>
+</resources>
